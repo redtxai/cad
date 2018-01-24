@@ -398,6 +398,7 @@ nodobdd* gerentebdd::getConstantOne()
 
 int main(int argc, char *argv[])
 {
+	std::string equationOutputFileName = "equation-xor-";
 	string line;
     ifstream inFile;
 
@@ -405,7 +406,8 @@ int main(int argc, char *argv[])
 	string target;
 	ss << argv[1];
 	ss >> target;
-
+	
+	equationOutputFileName += target;
 	target = "equation-" + target + ".txt";
     inFile.open(target.c_str());
     
@@ -419,6 +421,7 @@ int main(int argc, char *argv[])
 	ss2 << argv[2];
 	ss2 >> target2;
 
+	equationOutputFileName += "-" + target2 + ".txt";
 	target2 = "equation-" + target2 + ".txt";
     inFile2.open(target2.c_str());
     
@@ -438,18 +441,27 @@ int main(int argc, char *argv[])
        
     system("PAUSE");
 
-	
+
     string equationA = "(" + line + ")";
     string equationB = "(" + line2 + ")";
     
     string equationXor = "(" + equationA + "*!" + equationB + ")" + "+(!" + equationA + "*" + equationB + ")";
-    cout << equationXor << endl;
+    cout << "\n" << equationXor << "\n\n" << endl;
 
     std::replace( equationXor.begin(), equationXor.end(), '+', '|');
     std::replace( equationXor.begin(), equationXor.end(), '*', '&');
 
     cout << equationXor << endl;
     
+    
+	ofstream outputFile;
+	outputFile.open(equationOutputFileName.c_str());
+
+	outputFile << equationXor;
+    outputFile.close();
+    
+    string limbooleCall = "limboole.exe -s " + equationOutputFileName;
+    system(limbooleCall.c_str());
     system("PAUSE");
     return EXIT_SUCCESS;
 }

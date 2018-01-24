@@ -193,6 +193,7 @@ Aig* AAGReader::readFile() {
 	outputFile.open(equationOutputFileName.c_str());
 
 	outputFile << finalEquation;
+	outputFile.close();
 	return NULL;
 }
 
