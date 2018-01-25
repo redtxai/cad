@@ -2,8 +2,8 @@
 
 int getIntValue(string stringValue) {
 	stringstream geek2(stringValue);
-    int intValue = 0;
-    geek2 >> intValue;
+  int intValue = 0;
+  geek2 >> intValue;
 	return intValue;
 }
 
@@ -84,12 +84,9 @@ Aig* AAGReader::readFile() {
 		line.seekg(0);line.str(s);
 		line >> word;
 
-		stringstream geek3(word);
-	    int x3 = 0;
-	    geek3 >> x3;
-	    
-	    if (x3%2 != 0) {
-	    	inputsOutputs[word] = "!";
+	  int x3 = getIntValue(word);
+	  if (x3%2 != 0) {
+	  	inputsOutputs[word] = "!";
 		} else {
 			inputsOutputs[word] = "";
 		}
@@ -113,33 +110,29 @@ Aig* AAGReader::readFile() {
 		line >> word;
 		input2 = word;
 		
+		debug << "[" << output << "] [" << input1 << " " << input2 << "]\n";
+		
 		stringstream geek(input1);
 	    int x = 0;
 	    geek >> x;
 	    
 	    
-	    debug << "[" << output << "] [" << input1 << " " << input2 << "]\n";
-	    if (x%2 != 0) {
-    		x--;
-    		stringstream ss2;
-			ss2 << x;
-			string str2 = ss2.str();
+	  int x = getIntValue(input1);
+		if (x%2 != 0) {
+			x--;
+			string str2 = getStringValue(x);
 
-	    	input1 = "!" + inputsOutputs[str2];
+	    input1 = "!" + inputsOutputs[str2];
 		} else {
 			input1 = inputsOutputs[input1];
 		}
 
-		stringstream geek2(input2);
-	    int x2 = 0;
-	    geek2 >> x2;
+		int x2 = getIntValue(input2);
 		if (x2%2 != 0) {
 			x2--;
-    		stringstream ss22;
-			ss22 << x2;
-			string str22 = ss22.str();
+			string str22 = getStringValue(x2);
 
-	    	input2 = "!" + inputsOutputs[str22];
+	    input2 = "!" + inputsOutputs[str22];
 		} else {
 			input2 = inputsOutputs[input2];
 		}
