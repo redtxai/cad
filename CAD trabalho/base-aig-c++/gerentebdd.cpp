@@ -427,17 +427,24 @@ int main(int argc, char *argv[])
     
     getline(inFile2,line2, '\n');
 
+	
+	cout << line + "\n";
+    cout << line2 + "\n";
+
+
     gerentebdd g;
     set<string> conjunto_variaveis;
     nodobdd *nd1=g.create_from_equation(line, conjunto_variaveis);
     nodobdd *nd2=g.create_from_equation(line2, conjunto_variaveis);
-    nodobdd *c=g.create_from_equation("c", conjunto_variaveis);
-    nodobdd *nd3=g.cofactor(nd1, c, '+');
-    nodobdd *nd4=g.cofactor(nd2, c, '-');
+    nodobdd *z=g.create_from_equation("z", conjunto_variaveis);
+    nodobdd *nd3=g.cofactor(nd1, z, '+');
+    nodobdd *nd4=g.cofactor(nd2, z, '-');
     if (nd3==nd4)
        {
-       cout<<"seems to work"<<endl;
-       }
+       cout << "equals"<<endl;
+       } else {
+       cout << "not equals"<<endl;
+	   }
        
     system("PAUSE");
 

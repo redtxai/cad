@@ -56,7 +56,7 @@ Aig* AAGReader::readFile() {
 
 	debug << s << "\nThe file header is ok!\n\n";
 	
-	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char alpha[] = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	int alpha_index = 0;
 	std::vector<char> alphabet( alpha, alpha+sizeof(alpha)-1 ) ;
 	map<string, string> inputsOutputs;
@@ -117,7 +117,7 @@ Aig* AAGReader::readFile() {
 	    geek >> x;
 	    
 	    
-	  int x = getIntValue(input1);
+	  	x = getIntValue(input1);
 		if (x%2 != 0) {
 			x--;
 			string str2 = getStringValue(x);
